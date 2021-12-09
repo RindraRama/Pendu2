@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1638991060 source:c:\users\rindr\onedrive\documents\cours\info\debug\affichagependu.c
+	"affichagependu.h"
+
+1638991061 c:\users\rindr\onedrive\documents\cours\info\debug\affichagependu.h
+	<stdio.h>
+	<stdlib.h>
+
+1639062120 source:c:\users\rindr\onedrive\documents\cours\info\debug\main.c
+	<stdio.h>
+	"affichagependu.h"
+	"Menu_Pendu.h"
+	"PenduBoucleJeu.h"
+	<stdlib.h>
+	<time.h>
+	"SauvegardePendu.h"
+
+1638989558 c:\users\rindr\onedrive\documents\cours\info\debug\pendu bouclejeu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1638990425 source:c:\users\rindr\onedrive\documents\cours\info\debug\pendubouclejeu.c
+	"PenduBoucleJeu.h"
+
+1639047693 c:\users\rindr\onedrive\documents\cours\info\debug\pendubouclejeu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1639058123 source:c:\users\rindr\onedrive\documents\cours\info\debug\menu_pendu.c
+	"Menu_Pendu.h"
+
+1638991079 c:\users\rindr\onedrive\documents\cours\info\debug\menu_pendu.h
+	<stdio.h>
+	<stdlib.h>
+
+1639063970 source:c:\users\rindr\onedrive\documents\cours\info\debug\sauvegardependu.c
+	"SauvegardePendu.h"
+
+1639061841 c:\users\rindr\onedrive\documents\cours\info\debug\sauvegardependu.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+
