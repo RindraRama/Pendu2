@@ -101,7 +101,6 @@ int main()
     strcpy(test->PlayerName,"deosti");
     test->TempsTotalPartieEnSec=55;
     printf("id 1 : %d\n",test->ID);
-    test->ID=FindID(test);
-    printf("id 0 : %d\n",test->ID);
+    test->ID=FindID(test);;
     return 0;
 }

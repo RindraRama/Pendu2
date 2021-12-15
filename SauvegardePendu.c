@@ -3,13 +3,13 @@
 GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec)
 {
     GAME * test=malloc(sizeof(GAME));
-    test->debutPartie=debutPartie;
+    test->debutPartie=debutPartie;//tmier
     test->erreurs=erreurs;
-    test->finPartie=finPartie;
+    test->finPartie=finPartie;// timer
     strcpy(test->lettersFounded,lettersFounded);
     strcpy(test->motatrouver,motatrouver);
     strcpy(test->PlayerName,PlayerName);
-    test->TempsTotalPartieEnSec=55;
+    test->TempsTotalPartieEnSec=TempsTotalPartieEnSec; //timer
     test->ID=FindID(test);
     return test;
 
@@ -36,7 +36,7 @@ void SaveGame(GAME * partie)
 
 }
 
-int FindID(GAME * game)
+int FindID(GAME * game)//pas fini
 {
     FILE * fichier=NULL;
     fichier=fopen("save.txt","r");
@@ -51,16 +51,25 @@ int FindID(GAME * game)
     int ID;
     int idp=0;
     char* temp;
+
     fscanf(fichier,"%i %s %s %s %d %f %f %f", &ID, &PlayerName,&motatrouver,&lettersFounded,&erreurs,&debutPartie,&finPartie,&TempsTotalPartieEnSec);
     while(idp+1!=ID)
     {
-        fgets(temp,100,fichier);
-        ID=fgetc(fichier);
-        idp++;
+        printf("aaaaa\n");
+        char n='a';
+        int i=0;
+        printf("%c\n",n);
+        while(n!='\n')
+        {
+            fseek(fichier,i,SEEK_SET);
+            n=fgetc(fichier);
+            i++;
+        }
+        fseek(fichier,i,SEEK_SET);
+        idp=fgetc(fichier);
     }
-
+    printf("vvvvvv%d\n",idp);
     return idp;
-
 }
 
 
