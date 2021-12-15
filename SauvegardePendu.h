@@ -14,7 +14,6 @@ typedef struct statsgame
         float finPartie;
         float TempsTotalPartieEnSec;
         int ID;
-        struct statsgame*suivant;
 
 
     } GAME;
@@ -23,7 +22,7 @@ typedef struct statsgame
 
 GAME *listeParties ;
 
-GAME *creerPartie (char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec,int nb_erreur);
+GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec);
 
 //GAME *ajouterAliste(GAME*listeParties,GAME*partie);
 

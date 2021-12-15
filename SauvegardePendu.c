@@ -1,23 +1,17 @@
 #include "SauvegardePendu.h"
 
-GAME *creerPartie (char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec,int nb_erreur)
+GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec)
 {
-    GAME*partie = malloc(sizeof(GAME)); // on reserve l'espace nécesssaire à l'objet
-
-    printf("\n\nQuel est votre nom ou pseudo, Joueur-Joueuse? :"); //on demande son nom au joueur pour quil retrouve sa partie plus tard
-    scanf("%s",partie->PlayerName);
-
-
-
-
-    partie->erreurs=nb_erreur;
-    strcpy(partie->motatrouver,motatrouver);
-    strcpy(partie->lettersFounded,lettersFounded);
-    partie->debutPartie=debutPartie;
-    partie->finPartie=finPartie;
-    partie->TempsTotalPartieEnSec=TempsTotalPartieEnSec;
-    partie->suivant=NULL;
-    return partie;
+    GAME * test=malloc(sizeof(GAME));
+    test->debutPartie=debutPartie;
+    test->erreurs=erreurs;
+    test->finPartie=finPartie;
+    strcpy(test->lettersFounded,lettersFounded);
+    strcpy(test->motatrouver,motatrouver);
+    strcpy(test->PlayerName,PlayerName);
+    test->TempsTotalPartieEnSec=55;
+    test->ID=FindID(test);
+    return test;
 
 }
 // il faudra set ces données en fonction du type de partie (nouveau ou ancien) pour créer une partie, il faut qu'elles soient extérieures à la fonction ou que la fonction de création soit initiée au debut pour prendre les infos dès le debut

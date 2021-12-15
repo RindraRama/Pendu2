@@ -44,3 +44,43 @@
 	<time.h>
 	<string.h>
 
+1638991060 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\affichagependu.c
+	"affichagependu.h"
+
+1638991061 c:\users\rindr\onedrive\documents\cours\info\git\pendu2\affichagependu.h
+	<stdio.h>
+	<stdlib.h>
+
+1639571411 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\main.c
+	<stdio.h>
+	"affichagependu.h"
+	"Menu_Pendu.h"
+	"PenduBoucleJeu.h"
+	<stdlib.h>
+	<time.h>
+	"SauvegardePendu.h"
+
+1638991079 c:\users\rindr\onedrive\documents\cours\info\git\pendu2\menu_pendu.h
+	<stdio.h>
+	<stdlib.h>
+
+1639047693 c:\users\rindr\onedrive\documents\cours\info\git\pendu2\pendubouclejeu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1639571059 c:\users\rindr\onedrive\documents\cours\info\git\pendu2\sauvegardependu.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+
+1639058123 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\menu_pendu.c
+	"Menu_Pendu.h"
+
+1638990425 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\pendubouclejeu.c
+	"PenduBoucleJeu.h"
+
+1639571718 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\sauvegardependu.c
+	"SauvegardePendu.h"
+
