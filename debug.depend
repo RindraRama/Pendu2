@@ -84,3 +84,34 @@
 1639571718 source:c:\users\rindr\onedrive\documents\cours\info\git\pendu2\sauvegardependu.c
 	"SauvegardePendu.h"
 
+1639571993 source:c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\affichagependu.c
+	"affichagependu.h"
+
+1639571993 c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\affichagependu.h
+	<stdio.h>
+	<stdlib.h>
+
+1640537302 source:c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\menu_pendu.c
+	"Menu_Pendu.h"
+
+1639571993 c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\menu_pendu.h
+	<stdio.h>
+	<stdlib.h>
+
+1639571993 source:c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\pendubouclejeu.c
+	"PenduBoucleJeu.h"
+
+1639571993 c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\pendubouclejeu.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1639576432 source:c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\sauvegardependu.c
+	"SauvegardePendu.h"
+
+1639572179 c:\users\pierre-jean martin\documents\pj\important\scolaire\2021-2022 eilco\cours\github et projet c\pendu2\sauvegardependu.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+

@@ -23,14 +23,14 @@ int menuPenduJouerQuitter ()
         if (jouer_quitter=='j')
         {
             printf("_*_Bonne Partie!!!_*_");
-            return 1;
+            return JOUER;
         }
 
         if (jouer_quitter=='q' )
         {
             printf("\nVous aller quitter la partie en cours\n\n--->Souhaitez vous sauvegarder?");
             menuPenduSauvergarder();
-            return 2;
+            return LEAVE;
         }
 
     }
