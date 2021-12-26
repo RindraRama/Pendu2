@@ -30,46 +30,38 @@ int ResumeGame(GAME*liste)
 void SaveGame(GAME * partie)
 {
     FILE * save=NULL;
-    save=fopen("save.txt","a");
+    save=fopen("save.txt","r+");
+    rewind(save);
+    char a[100]={0};
+    for(int i=0;i<partie->ID;i++)
+    {
+        fgets(a,100,save);
+    }
+    fprintf(save,"\n");
     fprintf(save,"%i %s %s %s %d %f %f %f\n",partie->ID, partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec);
     fclose(save);
 
 }
 
-int FindID(GAME * game)//pas fini
+int FindID(GAME * game)
 {
     FILE * fichier=NULL;
     fichier=fopen("save.txt","r");
     rewind(fichier);
-    char PlayerName;
-    char motatrouver;
-    char lettersFounded;
-    int erreurs;
-    float debutPartie;
-    float finPartie;
-    float TempsTotalPartieEnSec;
     int ID;
-    int idp=0;
-    char* temp;
-
-    fscanf(fichier,"%i %s %s %s %d %f %f %f", &ID, &PlayerName,&motatrouver,&lettersFounded,&erreurs,&debutPartie,&finPartie,&TempsTotalPartieEnSec);
-    while(idp+1!=ID)
+    int idp='1';
+    char temp[100]={0};
+    while(fgets(temp,100,fichier))
     {
-        printf("aaaaa\n");
-        char n='a';
-        int i=0;
-        printf("%c\n",n);
-        while(n!='\n')
+        ID=temp[0];
+        if(ID!=idp)
         {
-            fseek(fichier,i,SEEK_SET);
-            n=fgetc(fichier);
-            i++;
+            break;
         }
-        fseek(fichier,i,SEEK_SET);
-        idp=fgetc(fichier);
+        idp++;
     }
-    printf("vvvvvv%d\n",idp);
-    return idp;
+    fclose(fichier);
+    return idp-'0';
 }
 
 

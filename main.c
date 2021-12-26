@@ -124,16 +124,7 @@ int main()
     getchar();
     }
     printf("fin du jeu\n");*/
-    GAME * test=malloc(sizeof(GAME));
-    test->debutPartie=4;
-    test->erreurs=5;
-    test->finPartie=2.1;
-    test->ID=42;
-    strcpy(test->lettersFounded,"azerty");
-    strcpy(test->motatrouver,"hola");
-    strcpy(test->PlayerName,"deosti");
-    test->TempsTotalPartieEnSec=55;
-    printf("id 1 : %d\n",test->ID);
-    test->ID=FindID(test);;
+    GAME * test=creerPartie("Deosti","test","azertyu",5,1.25,2.15,1.2);
+    SaveGame(test);
     return 0;
 }
