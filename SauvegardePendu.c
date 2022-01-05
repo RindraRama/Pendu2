@@ -18,10 +18,18 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 
 
 
-int ResumeGame(GAME*liste)
+void ResumeGame()
 {
-    return 0;
+    FILE * fichier=NULL;
+    fichier=fopen("save.txt","r");
+    rewind(fichier);
+    char temp[100]={0};
+    while(fgets(temp,100,fichier))
+    {
+
+    }
 }
+
 //permet de visualiser les différentes parties et de choisir laquelle on reprend
 
 //trouver comment écrire dans un fichier et aller rechercher dedans et passer du fichier à la stucture et inversement pour le bon traitement

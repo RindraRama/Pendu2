@@ -27,7 +27,7 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 //GAME *ajouterAliste(GAME*listeParties,GAME*partie);
 
 
-int ResumeGame(GAME*listeParties);
+void ResumeGame();
 //permet de visualiser les différentes parties et de choisir laquelle on reprend
 
 //trouver comment écrire dans un fichier et aller rechercher dedans et passer du fichier à la stucture et inversement pour le bon traitement

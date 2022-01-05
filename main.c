@@ -15,9 +15,9 @@ int main()
     int typePartie;
     int compteurErreurs;
     Jouer=menuPenduJouerQuitter();
-    /*
+
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
-    while (Jouer !=LEAVE && compteurErreurs<10)
+    while (/*Jouer !=2 &&*/ compteurErreurs<10)
     {
 
         typePartie=menuPenduTypePartie();
@@ -123,8 +123,5 @@ int main()
         }
     getchar();
     }
-    printf("fin du jeu\n");*/
-    GAME * test=creerPartie("Deosti","test","azertyu",5,1.25,2.15,1.2);
-    SaveGame(test);
     return 0;
 }
