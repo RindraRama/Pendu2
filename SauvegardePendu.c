@@ -18,18 +18,24 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 
 
 
-void ResumeGame() //Afficher les différentes parties pour les reprendre
+int ResumeGame() //Afficher les différentes parties pour les reprendre
 {
     FILE * fichier=NULL; //on cree un pointeur
     fichier=fopen("save.txt","r"); // on indique le chemin
-    rewind(fichier);                //on recup le ficheir
+    rewind(fichier);                //cursuer au debut
     char temp[100]={0};
-    int ID_probable=0;             //on cree de la memoire
+    int ID=0;             //on cree de la memoire
     while(fgets(temp,100,fichier))
     {
-        printf("Partie n° %d : %s",ID_probable,temp);
+        printf("Partie: %s",temp);
     }
     fclose(fichier);
+
+    printf("quel est le nmero de la partie que vous voulez rejouer? :");
+    int a;
+    scanf("%d",&a);
+
+    return a;
 }
 
 //permet de visualiser les différentes parties et de choisir laquelle on reprend

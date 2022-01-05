@@ -101,3 +101,33 @@ int menuPenduSauvergarder()
     return 0;
 }
 
+
+void n_alea(int maxi, int *n)
+{
+    *n = rand() % maxi + 1;
+}
+
+void Selection(char nomfichier[], char motatrouver[40],int Tailleliste)
+            {
+                int aleatoire;
+                char word[MAX_CHAR];
+                FILE *fic;
+                srand ( time(NULL) );
+
+                fic = fopen(nomfichier,'r');
+
+                n_alea(Tailleliste, &aleatoire);
+
+                //chercher(word, fic, aleatoire);// que fait chercher?
+                int n=0;
+                while (n < aleatoire)
+                {
+                    fgets(word,MAX_CHAR,nomfichier);
+                }
+                printf("%d\n", aleatoire);
+
+                //printf("%s\n", word);
+                strcpy(motatrouver,word);
+
+                return 0;
+            }
