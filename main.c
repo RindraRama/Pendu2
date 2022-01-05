@@ -5,7 +5,38 @@
 #include <stdlib.h>
 #include <time.h>
 #include "SauvegardePendu.h"
+#define MAX_CHAR 40
 
+
+void n_alea(int maxi, int *n)
+{
+    *n = rand() % maxi + 1;
+}
+
+void Selection(char nomfichier[], char motatrouver[40],int Tailleliste)
+            {
+                int aleatoire;
+                char word[MAX_CHAR];
+                FILE *fic;
+                srand ( time(NULL) );
+
+                fic = fopen(nomfichier,'r');
+
+                n_alea(Tailleliste, &aleatoire);
+
+                //chercher(word, fic, aleatoire);// que fait chercher?
+                int n=0;
+                while (n < aleatoire)
+                {
+                    fgets(word,MAX_CHAR,nomfichier);
+                }
+                printf("%d\n", aleatoire);
+
+                //printf("%s\n", word);
+                strcpy(motatrouver,word);
+
+                return 0;
+            }
 
 int main()
 {
@@ -14,9 +45,12 @@ int main()
     int Jouer;
     int typePartie;
     int compteurErreurs;
+    char motatrouver[40];
+
     Jouer=menuPenduJouerQuitter();
 
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
+
     while (/*Jouer !=2 &&*/ compteurErreurs<10)
     {
 
@@ -32,19 +66,29 @@ int main()
             int difficulty=menuPenduDifficulte ();
 
             if (difficulty==1)
+
             {
-             FONCTIONCHOIXMOT( DANS LISTE DES MOTS FACILES)
+             //FONCTIONCHOIXMOT( DANS LISTE DES MOTS FACILES)
+                nomfichier="listlvl1"
+                compteurErreurs=0;
+                Tailleliste= ;
+
             //OU bien on met le compteur d'erreurs plus haut
+
             }
             if (difficulty==2)
             {
              FONCTIONCHOIXMOT( DANS LISTE DES MOTS MOYENS)
-
+                nomfichier="listlvl2"
+                compteurErreurs=2;
+                Tailleliste= ;
             }
             if (difficulty==3)
             {
              FONCTIONCHOIXMOT( DANS LISTE DES MOTS DIFFICILES)
-
+                nomfichier="listlvl2"
+                compteurErreurs=2;
+                Tailleliste= ;
             }
 
             */

@@ -18,16 +18,18 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 
 
 
-void ResumeGame()
+void ResumeGame() //Afficher les différentes parties pour les reprendre
 {
-    FILE * fichier=NULL;
-    fichier=fopen("save.txt","r");
-    rewind(fichier);
+    FILE * fichier=NULL; //on cree un pointeur
+    fichier=fopen("save.txt","r"); // on indique le chemin
+    rewind(fichier);                //on recup le ficheir
     char temp[100]={0};
+    int ID_probable=0;             //on cree de la memoire
     while(fgets(temp,100,fichier))
     {
-
+        printf("Partie n° %d : %s",ID_probable,temp);
     }
+    fclose(fichier);
 }
 
 //permet de visualiser les différentes parties et de choisir laquelle on reprend
