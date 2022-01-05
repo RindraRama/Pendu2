@@ -22,7 +22,7 @@ int main()
 
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
 
-    while (/*Jouer !=2 &&*/ compteurErreurs<10)
+    while (Jouer !=2 )
     {
 
         typePartie=menuPenduTypePartie();
