@@ -9,17 +9,15 @@
 
 int main()
 {
-    // On introduit les constantes qui vont servir dans le reste du jeu (pj)
-
+    // On introduit les constantes qui vont servir dans le reste du jeu (pj
     int Jouer;
     int typePartie;
     int compteurErreurs;
     Jouer=menuPenduJouerQuitter();
 
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
-    while (/*Jouer !=2 &&*/ compteurErreurs<10)
+    while (Jouer !=2)
     {
-
         typePartie=menuPenduTypePartie();
         if (typePartie=='N' || typePartie=='n')
         {
@@ -30,35 +28,38 @@ int main()
 
             /*
             int difficulty=menuPenduDifficulte ();
-
             if (difficulty==1)
             {
-             FONCTIONCHOIXMOT( DANS LISTE DES MOTS FACILES)
+             //FONCTIONCHOIXMOT( DANS LISTE DES MOTS FACILES)
+                nomfichier="listlvl1"
+                compteurErreurs=0;
+                Tailleliste= ;
             //OU bien on met le compteur d'erreurs plus haut
             }
             if (difficulty==2)
             {
              FONCTIONCHOIXMOT( DANS LISTE DES MOTS MOYENS)
-
+                nomfichier="listlvl2"
+                compteurErreurs=2;
+                Tailleliste= ;
             }
             if (difficulty==3)
             {
              FONCTIONCHOIXMOT( DANS LISTE DES MOTS DIFFICILES)
-
+                nomfichier="listlvl2"
+                compteurErreurs=2;
+                Tailleliste= ;
             }
-
             */
             /*
             //On lance le chrono et on l'enregistre au moins pour les stats de fin de game
             time_t debut=time(NULL);
             //2) On lance la boucle de jeu (proposer une lettre etc) ou de quitter
-
             //3) Si le joueur quitte on lui propose de sauvegarder (ajouter Sauvegarde à la fin de tout endroit ou on peut quitter)
-
             //4) si le joueur gagne ou perd on lui propose pas de sauvegarder mais a voir si je dois refaire une liste des parties jouees pour faire des meilleures stats
             //4) et on lui montre son temps, eventuellement le pourcentage de lettres trouvees
-
             */
+
 
             char *mot=strdup("hola"); /// changer plus trad par une fonction qui prend un mot random
             int t = strlen(mot);
@@ -69,7 +70,7 @@ int main()
             compteurErreurs = 0;
             char *stop=strdup("stop");
 
-            while ( compteurErreurs<10)
+            while (compteurErreurs<10)
             ///Boucle de test de lettre
             ///la condition du while doit etre a déterminer
             {
@@ -102,7 +103,6 @@ int main()
                 }
                 compteurErreurs++;
             }
-
         }
 
         if (typePartie=='R' || typePartie=='r' )
@@ -113,7 +113,6 @@ int main()
                 //printf("Vous avez deja passe %d min sur ce mot",TempsTotal)
             //2) etapes 3 et 4 d'au dessus avec recalcul du temps
                 //TempsTotal+=difftime(debut,fin)
-
         }
         //ajouter la selection du mot
         //la variable du mot va se nommer "mot"
@@ -123,5 +122,7 @@ int main()
         }
     getchar();
     }
+
+    Selection();
     return 0;
 }
