@@ -10,7 +10,6 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
     strcpy(test->motatrouver,motatrouver);
     strcpy(test->PlayerName,PlayerName);
     test->TempsTotalPartieEnSec=TempsTotalPartieEnSec; //timer
-    test->ID=FindID(test);
     return test;
 
 }
@@ -20,37 +19,76 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 
 void ResumeGame()
 {
-    FILE * fichier=NULL;
-    fichier=fopen("save.txt","r");
-    rewind(fichier);
-    char temp[100]={0};
-    while(fgets(temp,100,fichier))
-    {
+    char Nom;
+    printf("Entrez votre nom\n");
+    scanf("%s",&Nom);
 
+    int ex=fexists(&Nom);
+    while (ex==1)
+    {
+        printf("%s ------\n",&Nom);
+        printf("Partie inexistante, veillez reessayer\n");
+        scanf("%s",&Nom);
+        ex=fexists(&Nom);
+    }
+
+    FILE* fichier =NULL;
+    char *PlayerName;
+    /*char motatrouver;
+    char lettersFounded;
+    int erreurs;
+    float debutPartie;
+    float finPartie;
+    float TempsTotalPartieEnSec;*/
+    fichier=fopen(&Nom,"r");
+    rewind(fichier);
+    char temp[100];
+    while (fscanf(fichier,"%[^\n]",temp)!=EOF)
+    {
+        fscanf(fichier,"%[^\n]",&PlayerName);
+        printf("az\n");
+        printf("%s\n",PlayerName);
     }
 }
 
-//permet de visualiser les différentes parties et de choisir laquelle on reprend
-
-//trouver comment écrire dans un fichier et aller rechercher dedans et passer du fichier à la stucture et inversement pour le bon traitement
-//+chercher comment on peut créer une nouvelle partie ou supprimmer des parties etc
 
 void SaveGame(GAME * partie)
 {
     FILE * save=NULL;
-    save=fopen("save.txt","r+");
-    rewind(save);
-    char a[100]={0};
-    for(int i=0;i<partie->ID;i++)
+    char  Nom;
+    printf("Entrez votre nom\n");
+    scanf("%s",&Nom);
+    int ex=fexists(&Nom);
+    printf("%d\n",ex);
+    while (ex==0)
     {
-        fgets(a,100,save);
+        printf("Nom pris, veillez changer\n\n");
+        printf("Entrez votre nom\n");
+        scanf("%s",&Nom);
+        ex=fexists(&Nom);
     }
-    fprintf(save,"\n");
-    fprintf(save,"%i %s %s %s %d %f %f %f\n",partie->ID, partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec);
+
+    save=fopen(&Nom,"w");
+    rewind(save);
+    fprintf(save,"%s %s %s %d %f %f %f",partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec);
     fclose(save);
-
 }
-
+int fexists(char * fichier)
+{
+    FILE* f=NULL;
+    f=fopen(fichier,"r");
+    if (f==NULL)
+    {
+        fclose(f);
+        return 1;
+    }
+    else
+    {
+        fclose(f);
+        return 0;
+    }
+}
+/*
 int FindID(GAME * game)
 {
     FILE * fichier=NULL;
@@ -71,7 +109,7 @@ int FindID(GAME * game)
     fclose(fichier);
     return idp-'0';
 }
-
+*/
 
 
 

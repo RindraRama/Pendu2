@@ -10,7 +10,6 @@ int TestLettre(char * mot, char prop)
     while (mot[i] != '\0')
     /// teste toutes les lettre du mot si la proposition est dans le mot arrete la fonction et renvoie TRUE
     {
-
         if (mot[i]== prop)
         {
             return 0;
@@ -20,11 +19,6 @@ int TestLettre(char * mot, char prop)
     return 1;
     ///la proposition n'est pas dans le mot, renvoie FALSE
 }
-
-
-
-
-
 char * replacerlettre(char * mot , char * progress, char a)
 ///place la lettre trouvée a sa place
 {
@@ -37,7 +31,6 @@ char * replacerlettre(char * mot , char * progress, char a)
     }
     return progress;
 }
-
 
 
 

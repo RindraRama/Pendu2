@@ -80,8 +80,15 @@ int menuPenduDifficulte ()
 {
     int diff;
 
-    printf("\n Sélectionnez la difficulté 1 facile 2 facile 3 facile :");
+    printf("Sélectionnez la difficulté 1 facile 2 facile 3 facile :\n");
     scanf("%d", &diff);
+    while ((diff!= 2) && (diff !=1) && (diff!=3))
+    {
+        getc(stdin);
+        printf("Erreur survenue, veuillez recommencer\n\n");
+        printf("Sélectionnez la difficulté 1 facile 2 facile 3 facile :\n");
+        scanf("%d", &diff);
+    }
 
     return diff;
 };
@@ -101,30 +108,21 @@ int menuPenduSauvergarder()
     return 0;
 }
 
-void n_alea(int maxi, int *n)
-{
-    *n = (rand() % maxi) + 1;
+
+
+void Selection(char * filename, char * motatrouver)
+    {
+    srand ( time(NULL) );
+    FILE * fichier=NULL;
+    int temp;
+    fichier=fopen(filename,"r");
+    int n=rand()%10000;
+    int i=0;
+        while(i<n)
+    {
+        temp=fscanf(fichier,"%s ",motatrouver);
+        if (temp== EOF) rewind(fichier);
+        i++;
+    }
+    fclose(fichier);
 }
-
-char * Selection()
-            {
-                //char * motatrouver;
-                int aleatoire;
-                char * word;
-                FILE *fic;
-                srand ( time(NULL) );
-                fic = fopen("Mot_3.txt","r");
-                n_alea(MAX, &aleatoire);
-                //chercher(word, fic, aleatoire);// que fait chercher?
-                int n=0;
-                while (n < aleatoire)
-                {
-                    fgets(word,100,fic);
-                }
-                printf("%d\n", aleatoire);
-
-                //printf("%s\n", word);
-                //strcpy(motatrouver,word);
-                printf("%s\n",word);
-                return word;
-            }

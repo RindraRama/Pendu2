@@ -6,13 +6,7 @@
 #define MAX 10
 
 int menuPenduJouerQuitter ();
-
 int menuPenduTypePartie();
-
 int menuPenduDifficulte ();
-
 int menuPenduSauvergarder();
-
-char * Selection();
-
-void n_alea(int maxi, int *n);
+void Selection(char * filename, char * motatrouver);
