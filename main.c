@@ -16,11 +16,13 @@ int main()
     Jouer=menuPenduJouerQuitter();
     int erreurs;
     char *mot=malloc(sizeof(char)*20);
+    char *stop=strdup("stop");
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
     while (Jouer !=2)
     {
         typePartie=menuPenduTypePartie();
         if (typePartie=='N' || typePartie=='n')
+            ///Nouvelle partie
         {
             printf("Nouvelle Partie\n");
             int diff=menuPenduDifficulte();
@@ -51,7 +53,6 @@ int main()
             avance[t]='\0';
             printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printf("Le mot est compos%c de %d lettres\n",130,t);
-            char *stop=strdup("stop");
             while ((compteurErreurs<erreurs) && (Jouer!=2))
             ///Boucle de test de lettre
             {
@@ -85,12 +86,66 @@ int main()
                 }
                 compteurErreurs++;
             }
+            getchar();
+            int s=menuPenduSauvergarder();
+            printf("%s %s %d\n",mot,avance,compteurErreurs);
+            if (s==0)
+            {
+                GAME*partie=creerPartie("",mot,avance,compteurErreurs,1.22,2.33,3.44,diff);
+                SaveGame(partie);
+            }
         }
 
         if (typePartie=='R' || typePartie=='r' )
         {
-            ResumeGame();
-            //printf("%s %s %s %d %f %f %f\n",partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec);
+            ///continuer une partie
+            char PlayerName [40];
+            char *mot = malloc(sizeof(char)*30);
+            char *avance=malloc(sizeof(char)*30);
+            int *erreurs=malloc(sizeof(int)); // sert à afficher le pendu en fonction du nombre d'erreurs réalisées
+            float *debutPartie=malloc(sizeof(float)); // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
+            float *finPartie=malloc(sizeof(float));
+            float *TempsTotalPartieEnSec=malloc(sizeof(float));
+            int* diff=malloc(sizeof(int));
+            ResumeGame(PlayerName,mot,avance,erreurs,debutPartie,finPartie,TempsTotalPartieEnSec,diff);
+            int trys;
+            if(*diff==1) trys=10;
+            if(*diff==2) trys=10;
+            if(*diff==3) trys=15;
+            printf("%d %s %s\n",compteurErreurs,mot,avance);
+            while ((compteurErreurs<trys) && (Jouer!=2))
+            ///Boucle de test de lettre
+            {
+                if (strcmp(mot,avance)==0)
+                {
+                    Jouer=2;
+                }
+                char prop;
+                printf("Proposer une lettre : \n");
+                scanf("%s", &prop);
+                if (prop == *stop)
+                {
+                    compteurErreurs--;
+                    Jouer=2;
+                    ///si on veut arreter le jeu on entre stop
+                }
+                int res = TestLettre(mot, prop);
+                if (res==0) ///bonne lettre
+                {
+                    avance=replacerlettre(mot,avance,prop);
+                    printf("Bonne proposition\n");
+                    printf ("il reste %d tentatives\n", trys-compteurErreurs-1);
+                    printf("%s\n\n",avance);
+                }
+                if (res==1) ///mauvaise lettre
+                {
+                    afficherPendu(compteurErreurs);
+                    printf("Mauvaise proposition\n");
+                    printf ("il reste %d tentatives\n\n", trys-compteurErreurs-1);
+                    printf("%s\n\n",avance);
+                }
+                compteurErreurs++;
+            }
         }
         if (typePartie=='Q' || typePartie=='q')
         {
@@ -98,5 +153,6 @@ int main()
         }
     getchar();
     }
+
     return 0;
 }

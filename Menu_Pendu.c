@@ -1,4 +1,5 @@
 #include "Menu_Pendu.h"
+#include "SauvegardePendu.h"
 #define JOUER 4
 #define LEAVE 2
 
@@ -29,7 +30,6 @@ int menuPenduJouerQuitter ()
         if (jouer_quitter=='q' )
         {
             printf("\nVous aller quitter la partie en cours\n\n--->Souhaitez vous sauvegarder?");
-            menuPenduSauvergarder();
             return 2;
         }
 
@@ -96,16 +96,18 @@ int menuPenduDifficulte ()
 int menuPenduSauvergarder()
 {
     char Save;
-    printf("\n\n SI vous souhaitez sauvergarder entrez s ");
+    printf("\n\n SI vous souhaitez sauvergarder entrez s \n");
     scanf("%c", &Save);
     if (Save == 's' )
     {
-        //on sauvegarde le fichier (à refaire)
-        printf("Sauvergarde en cours de developpement");
+        return 0;
     }
     else
+    {
         printf("Aurevoir!!!");
-    return 0;
+        return 1;
+    }
+
 }
 
 

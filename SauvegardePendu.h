@@ -13,18 +13,19 @@ typedef struct statsgame
         float debutPartie; // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
         float finPartie;
         float TempsTotalPartieEnSec;
+        int diff;
     } GAME;
 
 
 
 GAME *listeParties ;
 int fexists(char * fichier);
-GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec);
+GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec,int diff);
 
 //GAME *ajouterAliste(GAME*listeParties,GAME*partie);
 
 
-void ResumeGame();
+void ResumeGame(char *PlayerName,char *motatrouver,char *lettersFounded,int *erreurs,float *debutPartie,float *finPartie,float *TempsTotalPartieEnSec,int *diff);
 //permet de visualiser les différentes parties et de choisir laquelle on reprend
 
 //trouver comment écrire dans un fichier et aller rechercher dedans et passer du fichier à la stucture et inversement pour le bon traitement

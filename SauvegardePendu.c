@@ -1,6 +1,6 @@
 #include "SauvegardePendu.h"
 
-GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec)
+GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec,int diff)
 {
     GAME * test=malloc(sizeof(GAME));
     test->debutPartie=debutPartie;//tmier
@@ -17,60 +17,51 @@ GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounde
 
 
 
-void ResumeGame()
+void ResumeGame(char *PlayerName,char *motatrouver,char *lettersFounded,int *erreurs,float *debutPartie,float *finPartie,float *TempsTotalPartieEnSec,int *diff)
 {
-    char Nom;
+    char *Nom=malloc(sizeof(char)*20);
     printf("Entrez votre nom\n");
-    scanf("%s",&Nom);
-
-    int ex=fexists(&Nom);
+    scanf("%s",Nom);
+    int ex=fexists(Nom);
     while (ex==1)
     {
-        printf("%s ------\n",&Nom);
+        printf("%s ------\n",Nom);
         printf("Partie inexistante, veillez reessayer\n");
-        scanf("%s",&Nom);
-        ex=fexists(&Nom);
+        scanf("%s",Nom);
+        ex=fexists(Nom);
     }
-
     FILE* fichier =NULL;
-    char *PlayerName;
-    /*char motatrouver;
-    char lettersFounded;
-    int erreurs;
-    float debutPartie;
-    float finPartie;
-    float TempsTotalPartieEnSec;*/
-    fichier=fopen(&Nom,"r");
+    fichier=fopen(Nom,"r");
     rewind(fichier);
-    char temp[100];
-    while (fscanf(fichier,"%[^\n]",temp)!=EOF)
-    {
-        fscanf(fichier,"%[^\n]",&PlayerName);
-        printf("az\n");
-        printf("%s\n",PlayerName);
-    }
+    fscanf(fichier,"%s ",PlayerName);
+    fscanf(fichier,"%s ",motatrouver);
+    fscanf(fichier,"%s ",lettersFounded);
+    fscanf(fichier,"%d ",erreurs);
+    fscanf(fichier,"%f ",debutPartie);
+    fscanf(fichier,"%f ",finPartie);
+    fscanf(fichier,"%f ",TempsTotalPartieEnSec);
+    fscanf(fichier,"%d ",diff);
+
 }
 
 
 void SaveGame(GAME * partie)
 {
     FILE * save=NULL;
-    char  Nom;
+    char  *Nom=malloc(sizeof(char)*50);
     printf("Entrez votre nom\n");
-    scanf("%s",&Nom);
-    int ex=fexists(&Nom);
+    scanf("%s",Nom);
+    int ex=fexists(Nom);
     printf("%d\n",ex);
-    while (ex==0)
     {
         printf("Nom pris, veillez changer\n\n");
         printf("Entrez votre nom\n");
-        scanf("%s",&Nom);
-        ex=fexists(&Nom);
+        scanf("%s",Nom);
+        ex=fexists(Nom);
     }
-
-    save=fopen(&Nom,"w");
+    save=fopen(Nom,"w");
     rewind(save);
-    fprintf(save,"%s %s %s %d %f %f %f",partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec);
+    fprintf(save,"%s %s %s %d %f %f %f %d",partie->PlayerName, partie->motatrouver,partie->lettersFounded, partie->erreurs, partie->debutPartie,partie->finPartie, partie->TempsTotalPartieEnSec,partie->diff);
     fclose(save);
 }
 int fexists(char * fichier)
@@ -88,28 +79,6 @@ int fexists(char * fichier)
         return 0;
     }
 }
-/*
-int FindID(GAME * game)
-{
-    FILE * fichier=NULL;
-    fichier=fopen("save.txt","r");
-    rewind(fichier);
-    int ID;
-    int idp='1';
-    char temp[100]={0};
-    while(fgets(temp,100,fichier))
-    {
-        ID=temp[0];
-        if(ID!=idp)
-        {
-            break;
-        }
-        idp++;
-    }
-    fclose(fichier);
-    return idp-'0';
-}
-*/
 
 
 
