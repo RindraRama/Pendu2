@@ -18,11 +18,26 @@ int main()
     char *mot=malloc(sizeof(char)*20);
     char *stop=strdup("stop");
     getchar(); //pour faire une pause et pouvoir executer menuPenduTypePartie
+    fflush(stdin);
+    if (Jouer==3)
+    {
+        char PlayerName [40];
+        char *mot = malloc(sizeof(char)*30);
+        char *lettrestrouvees=malloc(sizeof(char)*30);
+        int *erreurs=malloc(sizeof(int)); // sert à afficher le pendu en fonction du nombre d'erreurs réalisées
+        long *debutPartie=malloc(sizeof(long)); // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
+        long *finPartie=malloc(sizeof(long));
+        double *TempsTotalPartieEnSec=malloc(sizeof(double));
+        int* diff=malloc(sizeof(int));
+        ResumeGame(PlayerName,mot,lettrestrouvees,erreurs,debutPartie,finPartie,TempsTotalPartieEnSec,diff);
+        printf("Nom : %s\nNombre de tentatives : %d\nTemps mis : %lf",PlayerName,*erreurs,*TempsTotalPartieEnSec);
+    }
     while (Jouer !=2)
     {
+        fflush(stdin); ///Pour vider le buffer et ne pas avoir un double message
         typePartie=menuPenduTypePartie();
         if (typePartie=='N' || typePartie=='n')
-            ///Nouvelle partie
+///Nouvelle partie
         {
             printf("Nouvelle Partie\n");
             int diff=menuPenduDifficulte();
@@ -53,8 +68,10 @@ int main()
             avance[t]='\0';
             printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             printf("Le mot est compos%c de %d lettres\n",130,t);
+            time_t *debutPartie=malloc(sizeof(time_t));
+            *debutPartie=time(NULL);
             while ((compteurErreurs<erreurs) && (Jouer!=2))
-            ///Boucle de test de lettre
+    ///Boucle de test de lettre
             {
                 if (strcmp(mot,avance)==0)
                 {
@@ -86,37 +103,42 @@ int main()
                 }
                 compteurErreurs++;
             }
+            time_t *finPartie=malloc(sizeof(time_t));
+            *finPartie=time(NULL);
+            double TempsTotalPartieEnSec=difftime(*finPartie,*debutPartie);
             getchar();
+            fflush(stdin);
             int s=menuPenduSauvergarder();
-            printf("%s %s %d\n",mot,avance,compteurErreurs);
             if (s==0)
             {
-                GAME*partie=creerPartie("",mot,avance,compteurErreurs,1.22,2.33,3.44,diff);
+                GAME*partie=creerPartie("",mot,avance,compteurErreurs,*debutPartie,*finPartie,TempsTotalPartieEnSec,diff);
                 SaveGame(partie);
             }
         }
 
         if (typePartie=='R' || typePartie=='r' )
         {
-            ///continuer une partie
+///continuer une partie
             char PlayerName [40];
             char *mot = malloc(sizeof(char)*30);
-            char *avance=malloc(sizeof(char)*30);
+            char *lettrestrouvees=malloc(sizeof(char)*30);
             int *erreurs=malloc(sizeof(int)); // sert à afficher le pendu en fonction du nombre d'erreurs réalisées
-            float *debutPartie=malloc(sizeof(float)); // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
-            float *finPartie=malloc(sizeof(float));
-            float *TempsTotalPartieEnSec=malloc(sizeof(float));
+            long *debutPartie=malloc(sizeof(long)); // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
+            long *finPartie=malloc(sizeof(long));
+            double *TempsTotalPartieEnSec=malloc(sizeof(double));
             int* diff=malloc(sizeof(int));
-            ResumeGame(PlayerName,mot,avance,erreurs,debutPartie,finPartie,TempsTotalPartieEnSec,diff);
+            ResumeGame(PlayerName,mot,lettrestrouvees,erreurs,debutPartie,finPartie,TempsTotalPartieEnSec,diff);
             int trys;
             if(*diff==1) trys=10;
             if(*diff==2) trys=10;
             if(*diff==3) trys=15;
-            printf("%d %s %s\n",compteurErreurs,mot,avance);
-            while ((compteurErreurs<trys) && (Jouer!=2))
-            ///Boucle de test de lettre
+
+            int c=*erreurs;
+            time_t time1=time(NULL);
+            while ((c<trys) && (Jouer!=2))
+    ///Boucle de test de lettre
             {
-                if (strcmp(mot,avance)==0)
+                if (strcmp(mot,lettrestrouvees)==0)
                 {
                     Jouer=2;
                 }
@@ -125,26 +147,34 @@ int main()
                 scanf("%s", &prop);
                 if (prop == *stop)
                 {
-                    compteurErreurs--;
+                    c--;
                     Jouer=2;
                     ///si on veut arreter le jeu on entre stop
                 }
                 int res = TestLettre(mot, prop);
                 if (res==0) ///bonne lettre
                 {
-                    avance=replacerlettre(mot,avance,prop);
+                    lettrestrouvees=replacerlettre(mot,lettrestrouvees,prop);
                     printf("Bonne proposition\n");
-                    printf ("il reste %d tentatives\n", trys-compteurErreurs-1);
-                    printf("%s\n\n",avance);
+                    printf ("il reste %d tentatives\n", trys-c-1);
+                    printf("%s\n\n",lettrestrouvees);
                 }
                 if (res==1) ///mauvaise lettre
                 {
-                    afficherPendu(compteurErreurs);
+                    afficherPendu(c);
                     printf("Mauvaise proposition\n");
-                    printf ("il reste %d tentatives\n\n", trys-compteurErreurs-1);
-                    printf("%s\n\n",avance);
+                    printf ("il reste %d tentatives\n\n", trys-c-1);
+                    printf("%s\n\n",lettrestrouvees);
                 }
-                compteurErreurs++;
+                c++;
+            }
+            time_t time2=time(NULL);
+            double TMPFinal= *TempsTotalPartieEnSec+difftime(time2,time1);
+            int s=menuPenduSauvergarder();
+            if (s==0)
+            {
+                GAME*partie=creerPartie(PlayerName,mot,lettrestrouvees,compteurErreurs,*debutPartie,*finPartie,TMPFinal,*diff);
+                SaveGame2(partie);
             }
         }
         if (typePartie=='Q' || typePartie=='q')
@@ -152,6 +182,7 @@ int main()
             Jouer=2;
         }
     getchar();
+    fflush(stdin);
     }
 
     return 0;

@@ -10,26 +10,14 @@ typedef struct statsgame
         char motatrouver [30];
         char lettersFounded [30];
         int erreurs; // sert à afficher le pendu en fonction du nombre d'erreurs réalisées
-        float debutPartie; // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
-        float finPartie;
-        float TempsTotalPartieEnSec;
+        long debutPartie; // recupere temps debut et fin de partie pour stat de temps eventuellement le temps passe dessus ATTENTON penser a importer bibliotheque de temps
+        long finPartie;
+        double TempsTotalPartieEnSec;
         int diff;
     } GAME;
 
-
-
-GAME *listeParties ;
 int fexists(char * fichier);
-GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,float debutPartie,float finPartie,float TempsTotalPartieEnSec,int diff);
-
-//GAME *ajouterAliste(GAME*listeParties,GAME*partie);
-
-
-void ResumeGame(char *PlayerName,char *motatrouver,char *lettersFounded,int *erreurs,float *debutPartie,float *finPartie,float *TempsTotalPartieEnSec,int *diff);
-//permet de visualiser les différentes parties et de choisir laquelle on reprend
-
-//trouver comment écrire dans un fichier et aller rechercher dedans et passer du fichier à la stucture et inversement pour le bon traitement
-//+chercher comment on peut créer une nouvelle partie ou supprimmer des parties etc
+GAME *creerPartie (char PlayerName [40],char motatrouver [30],char lettersFounded [30],int erreurs,long debutPartie,long finPartie,double TempsTotalPartieEnSec,int diff);
+void ResumeGame(char *PlayerName,char *motatrouver,char *lettersFounded,int *erreurs,long *debutPartie,long *finPartie,double *TempsTotalPartieEnSec,int *diff);
 void SaveGame(GAME * partie);
-//pour sauvegarder une parie
-int FindID(GAME * game); ///Pour créer l'ID d'une nouvelle partie
+void SaveGame2(GAME * partie);

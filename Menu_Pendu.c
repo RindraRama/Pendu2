@@ -9,30 +9,36 @@ int menuPenduJouerQuitter ()
 
     char jouer_quitter = 'q';
     printf("\n Voulez vous jouer ou quitter ? ");
-    printf("\n----->Si vous desirez jouer, entrez le caractere minuscule: %c",'j');
-    printf("\n----->Si vous desirez quitter, entrez le caractere minuscule: %c\n",'q');
+    printf("\n----->Si vous desirez jouer, entrez: %c",'j');
+    printf("\n----->Si vous desirez quitter, entrez %c\n",'q');
+    printf("\n----->Si vous desirez consulter vos stats, entrez s\n");
     scanf("%c", &jouer_quitter);
 
-    if (jouer_quitter != 'j' && jouer_quitter != 'q')
+    while (jouer_quitter != 'j' && jouer_quitter != 'q' && jouer_quitter!='s')
     {
         printf("\nCarractere non reconnu, veuillez recommencer ");
-        menuPenduJouerQuitter();
+        printf("\n Voulez vous jouer ou quitter ? ");
+        printf("\n----->Si vous desirez jouer, entrez: %c",'j');
+        printf("\n----->Si vous desirez quitter, entrez %c\n",'q');
+        printf("\n----->Si vous desirez consulter vos stats, entrez s\n");
+        scanf("%c", &jouer_quitter);
     }
 
-    else
+
+    if (jouer_quitter=='j')
     {
-        if (jouer_quitter=='j')
-        {
-            printf("_*_Bonne Partie!!!_*_");
-            return 4;
-        }
+        printf("_*_Bonne Partie!!!_*_");
+        return 4;
+    }
 
-        if (jouer_quitter=='q' )
-        {
-            printf("\nVous aller quitter la partie en cours\n\n--->Souhaitez vous sauvegarder?");
-            return 2;
-        }
-
+    if (jouer_quitter=='q' )
+    {
+        printf("\nVous aller quitter la partie en cours\n\n--->Souhaitez vous sauvegarder?");
+        return 2;
+    }
+    if (jouer_quitter=='s' )
+    {
+        return 3;
     }
     return 0;
 }
@@ -43,10 +49,19 @@ int menuPenduTypePartie ()
       char typ;
       //char confirmation;
       printf("\n\nSouhaitez vous jouer une ancienne partie? ou Jouer une nouvelle partie ?");
-      printf("\n------> Pour jouer une ancienne partie, tapez R");
-      printf("\n------> Pour jouer une nouvelle partie, tapez N");
-      printf("\n(-----> Pour quitter le jeu, tapez Q)\n");
+      printf("\n------> Pour jouer une ancienne partie, tapez r");
+      printf("\n------> Pour jouer une nouvelle partie, tapez n");
+      printf("\n(-----> Pour quitter le jeu, tapez q)\n");
       scanf("%c",&typ);
+      while(typ!='r' && typ!='n' && typ!='q')
+      {
+            printf("\nCarractere non reconnu, veuillez recommencer ");
+            printf("\n\nSouhaitez vous jouer une ancienne partie? ou Jouer une nouvelle partie ?");
+            printf("\n------> Pour jouer une ancienne partie, tapez r");
+            printf("\n------> Pour jouer une nouvelle partie, tapez n");
+            printf("\n(-----> Pour quitter le jeu, tapez q)\n");
+            scanf("%c",&typ);
+      }
 /*
       if (typ == 'R' || typ=='r')
         {

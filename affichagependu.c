@@ -1,6 +1,6 @@
 #include "affichagependu.h"
 
-int afficherPendu (int compteur)
+void afficherPendu (int compteur)
 
 {
     if (compteur == 0)
@@ -37,7 +37,6 @@ int afficherPendu (int compteur)
         printf("\n      _______\n      |     |\n      |     o/ \n      |    /|\n      |    /| \n      |\n      |\n      |\n      |\n      |\n      |\n______|______");
         printf("\n\nC'est perdu");
         };
-    return 0;
 }
 
 
